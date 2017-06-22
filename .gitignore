@@ -1,0 +1,14 @@
+.idea
+var/cache/*
+var/logs/*
+var/sessions/*
+vendor/*
+.sass-cache/
+node_modules/
+web/.htaccess
+web/bundles/*
+web/media/*
+web/uploads/*
+web/assets/*
+web/css/*
+web/js/*
