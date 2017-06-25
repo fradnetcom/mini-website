@@ -1,0 +1,12 @@
+page_home:
+    path:  /
+    defaults:
+        _controller: AppBundle:HomePage:index
+
+user_login:
+    path: /login
+    defaults:
+        _controller: AppBundle:User:login
+
+_logout:
+    path: /logout

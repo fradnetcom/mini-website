@@ -1,0 +1,23 @@
+{% for success in app.session.flashBag.get('success', []) %}
+    <div class="alert alert-success" role="alert">
+        {{ success |trans | raw }}
+    </div>
+{% endfor %}
+
+{% for info in app.session.flashBag.get('info', []) %}
+    <div class="alert alert-info" role="alert">
+        {{ info | trans | raw }}
+    </div>
+{% endfor %}
+
+{% for warning in app.session.flashBag.get('warning', []) %}
+    <div class="alert alert-warning" role="alert">
+        {{ warning | trans | raw }}
+    </div>
+{% endfor %}
+
+{% for faliure in app.session.flashBag.get('error', []) %}
+    <div class="alert alert-danger" role="alert">
+        {{ faliure | trans | raw }}
+    </div>
+{% endfor %}

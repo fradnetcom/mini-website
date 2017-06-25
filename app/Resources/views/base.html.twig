@@ -1,13 +1,43 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+<!DOCTYPE HTML>
+<html lang="{{ app.request.locale }}" itemscope itemtype="http://schema.org/WebSite">
+<head>
+    {% include 'page_head.html.twig' %}
+    {% include 'page_head_style.html.twig' %}
+    {% include 'page_head_script.html.twig' %}
+</head>
+<body>
+
+{% include 'page_header.html.twig' %}
+
+<div class="container main-container">
+
+    <div class="row row-offcanvas row-offcanvas-right">
+
+        <div class="col-xs-12 col-sm-9">
+            {% block pageContent %}{% endblock %}
+        </div><!--/.col-xs-12.col-sm-9-->
+
+        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
+            <div class="list-group">
+                <a href="#" class="list-group-item active">Link</a>
+                <a href="#" class="list-group-item">Link</a>
+                <a href="#" class="list-group-item">Link</a>
+                <a href="#" class="list-group-item">Link</a>
+                <a href="#" class="list-group-item">Link</a>
+                <a href="#" class="list-group-item">Link</a>
+                <a href="#" class="list-group-item">Link</a>
+                <a href="#" class="list-group-item">Link</a>
+                <a href="#" class="list-group-item">Link</a>
+                <a href="#" class="list-group-item">Link</a>
+            </div>
+        </div><!--/.sidebar-offcanvas-->
+    </div><!--/row-->
+
+</div><!--/.container-->
+
+{% include 'page_footer.html.twig' %}
+
+{% include 'page_scripts_bottom.html.twig' %}
+
+</body>
 </html>

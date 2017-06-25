@@ -1,0 +1,37 @@
+@media print {
+
+    * {
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+    }
+
+    body, * {
+        font-family: "Times New Roman", Times, serif;
+    }
+
+    .page-top,
+    .user-top,
+    .ad-item,
+    .sidebar-page-left,
+    .breadcrumb,
+    .page-footer,
+    .comments,
+    .news-info{
+        display: none;
+    }
+
+    .cookie-message,
+    .share-buttons {
+        display: none !important;
+    }
+
+    .main-column {
+        float: none;
+        width: calc(100% - 1rem);
+        margin: 0 1rem;
+
+    }
+    a[href]:after {
+        content: none !important;
+    }
+}

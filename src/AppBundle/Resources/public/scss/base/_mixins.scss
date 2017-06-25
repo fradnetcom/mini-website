@@ -1,0 +1,79 @@
+@mixin clearChildren() {
+    &:after{
+        clear: both;
+        display: table;
+        content: '';
+    }
+}
+
+@mixin flexbox() {
+    display: -ms-flexbox;      /* TWEENER - IE 10 */
+    display: -webkit-flex;     /* NEW - Chrome */
+    display: flex;
+}
+
+@mixin linearGradient($colorStart, $colorEnd){
+    background: $colorStart;
+    background: -moz-linear-gradient(0deg, $colorStart 0%, $colorEnd 100%);
+    background: -webkit-linear-gradient(0deg, $colorStart 0%, $colorEnd 100%);
+    background: -o-linear-gradient(0deg, $colorStart 0%, $colorEnd 100%);
+    background: -ms-linear-gradient(0deg, $colorStart 0%, $colorEnd 100%);
+    background: linear-gradient(90deg, $colorStart 0%, $colorEnd 100%);
+}
+
+@mixin respond-to($breakpoint) {
+
+    @if $breakpoint == "xsmall-max" {
+        @media (max-width: 479px) {
+            @content;
+        }
+    }
+
+    @if $breakpoint == "xsmall" {
+        @media (min-width: 480px) {
+            @content;
+        }
+    }
+
+    @else if $breakpoint == "xsmal-mediuml" {
+        @media (min-width: 624px) {
+            @content;
+        }
+    }
+
+    @else if $breakpoint == "small" {
+        @media (min-width: 768px) {
+            @content;
+        }
+    }
+
+    @else if $breakpoint == "small-max" {
+        @media (max-width: 767px) {
+            @content;
+        }
+    }
+
+    @else if $breakpoint == "small-medium" {
+        @media (min-width: 768px) and (max-width: 991px) {
+            @content;
+        }
+    }
+
+    @else if $breakpoint == "medium" {
+        @media (min-width: 992px) {
+            @content;
+        }
+    }
+
+    @else if $breakpoint == "large" {
+        @media (min-width: 1200px) {
+            @content;
+        }
+    }
+}
+
+@mixin transitions( $option: all, $time: 250ms )
+{
+    -webkit-transition: $option $time;
+    transition: $option $time;
+}

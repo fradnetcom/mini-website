@@ -1,17 +1,30 @@
-# To get started with security, check out the documentation:
-# https://symfony.com/doc/current/security.html
 security:
 
-    # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     providers:
-        in_memory:
-            memory: ~
+        users:
+            entity:
+                class: AppBundle:User
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
+
+        page_security:
+            switch_user: true
+            pattern:    ^/
+            anonymous: ~
+            provider: users
+            http_basic: ~
+            form_login:
+                check_path: _check_path
+                login_path: user_login
+                default_target_path: page_home
+                username_parameter: login[email]
+            logout:
+                path:   _logout
+                target: page_home
 
         main:
             anonymous: ~

@@ -1,0 +1,24 @@
+{
+  "name": "Panel bower package",
+  "authors": [
+    "Fradnet Agencja Interaktywna <biuro@fradnet.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "http://www.fradnet.com",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "bootstrap-sass": "~3.3.6",
+    "font-awesome": "FortAwesome/Font-Awesome#~4.6.1"
+  }
+}

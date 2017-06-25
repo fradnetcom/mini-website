@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block pageContent %}
+
+    {% include 'partials/flashMsg.html.twig' %}
+
+    {{ form(loginForm, {'attr': {'novalidate': 'novalidate'}}) }}
+
+{% endblock %}
