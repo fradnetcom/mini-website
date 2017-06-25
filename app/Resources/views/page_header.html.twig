@@ -8,13 +8,12 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Mini website</a>
+            <a class="navbar-brand" href="{{ path('page_home') }}">Mini website</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="{{ path('page_home') }}">Home</a></li>
-                <li><a href="#">Oferty</a></li>
-                <li><a href="#">+ Dodaj ofertę</a></li>
+                <li><a href="{{ path('offer_list') }}">Oferty</a></li>
+                <li><a href="{{ path('offer_create') }}">+ Dodaj ofertę</a></li>
                 {% if app.user %}
                     <li><a href="{{ path('_logout') }}">Wyloguj</a></li>
                 {% else %}

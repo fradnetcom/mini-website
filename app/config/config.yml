@@ -75,3 +75,9 @@ assetic:
     use_controller: '%kernel.debug%'
     filters:
         cssrewrite: ~
+
+knp_paginator:
+    page_range: 4
+    template:
+        pagination: 'KnpPaginatorBundle:Pagination:twitter_bootstrap_v3_pagination.html.twig'
+        sortable: 'KnpPaginatorBundle:Pagination:sortable_link.html.twig'

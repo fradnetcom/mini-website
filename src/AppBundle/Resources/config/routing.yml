@@ -10,3 +10,18 @@ user_login:
 
 _logout:
     path: /logout
+
+offer_create:
+    path: /offers/create
+    defaults:
+        _controller: AppBundle:Offer:create
+
+offer_list:
+    path: /offers/
+    defaults:
+        _controller: AppBundle:Offer:list
+
+offer_item:
+    path: /offers/{id}
+    defaults:
+        _controller: AppBundle:Offer:item

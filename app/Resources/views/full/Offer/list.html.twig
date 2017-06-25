@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block pageContent %}
+    <table>
+        <tr>
+            {# sorting of properties based on query components #}
+            <th>{{ knp_pagination_sortable(pagination, 'Id', 'o.id') }}</th>
+            <th{% if pagination.isSorted('o.title') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Title', 'o.title') }}</th>
+            <th>{{ knp_pagination_sortable(pagination, 'Release', ['o.dateCreated']) }}</th>
+        </tr>
+
+        {# table body #}
+        {% for offer in pagination %}
+            <tr {% if loop.index is odd %}class="color"{% endif %}>
+                <td>{{ offer.id }}</td>
+                <td>
+                    <a href="{{ path('offer_item', {'id': offer.id}) }}">
+                        {{ offer.title }}
+                    </a>
+                </td>
+                <td>{{ offer.dateCreated | date('Y-m-d H:i:s') }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    {# display navigation #}
+    <div class="navigation">
+        {{ knp_pagination_render(pagination) }}
+    </div>
+
+{% endblock %}

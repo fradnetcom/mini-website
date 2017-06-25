@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block pageContent %}
+    <article>
+        <header>
+            <h1>{{ content.title }}</h1>
+        </header>
+
+        {{ content.description }}
+
+        <hr>
+
+        <footer>
+            <p>Autor: {{ content.createAuthor.username }}</p>
+            <p>Data publikacji: {{ content.dateCreated|date('d.m.Y, H:i') }}</p>
+        </footer>
+    </article>
+{% endblock %}
