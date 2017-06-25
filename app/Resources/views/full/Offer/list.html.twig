@@ -1,12 +1,14 @@
 {% extends 'base.html.twig' %}
 
 {% block pageContent %}
-    <table>
+    <table class="table table-hover table-responsive table-striped">
         <tr>
             {# sorting of properties based on query components #}
             <th>{{ knp_pagination_sortable(pagination, 'Id', 'o.id') }}</th>
             <th{% if pagination.isSorted('o.title') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Title', 'o.title') }}</th>
             <th>{{ knp_pagination_sortable(pagination, 'Release', ['o.dateCreated']) }}</th>
+            <th>{{ knp_pagination_sortable(pagination, 'Autor', ['o.createAuthor']) }}</th>
+            <th>Zarządzaj</th>
         </tr>
 
         {# table body #}
@@ -19,6 +21,12 @@
                     </a>
                 </td>
                 <td>{{ offer.dateCreated | date('Y-m-d H:i:s') }}</td>
+                <td>{{ offer.createAuthor.username }}</td>
+                <td>
+                    {% if offer.createAuthor == app.user %}
+                        <button class="btn btn-danger">Usuń</button>
+                    {% endif %}
+                </td>
             </tr>
         {% endfor %}
     </table>

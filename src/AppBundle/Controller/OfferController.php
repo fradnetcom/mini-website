@@ -16,6 +16,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
  */
 class OfferController extends Controller
 {
+    const LIST_LIMIT = 5;
     /**
      * @param Request $request
      *
@@ -31,7 +32,7 @@ SQL;
 
         //Knp paginate
         $paginator = $this->get('knp_paginator');
-        $pagination = $paginator->paginate($query, $request->query->getInt('page', 1), 4);
+        $pagination = $paginator->paginate($query, $request->query->getInt('page', 1), self::LIST_LIMIT);
 
         return $this->render('full/Offer/list.html.twig', [
             'pagination' => $pagination

@@ -77,7 +77,7 @@ assetic:
         cssrewrite: ~
 
 knp_paginator:
-    page_range: 4
+    page_range: 5
     template:
         pagination: 'KnpPaginatorBundle:Pagination:twitter_bootstrap_v3_pagination.html.twig'
         sortable: 'KnpPaginatorBundle:Pagination:sortable_link.html.twig'
