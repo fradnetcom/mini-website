@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block pageContent %}
+
+    {% include 'partials/flashMsg.html.twig' %}
+
+    <h1>Edytuj</h1>
+
+    {{ form(form, {'attr': {'novalidate': 'novalidate'}}) }}
+
+{% endblock %}

@@ -24,7 +24,8 @@
                 <td>{{ offer.createAuthor.username }}</td>
                 <td>
                     {% if offer.createAuthor == app.user %}
-                        <button class="btn btn-danger btn-remove" data-id="{{ offer.id }}" >Usuń</button>
+                        <a href="{{ path('offer_edit', {'id': offer.id}) }}" class="btn btn-info btn-edit">Edytuj</a>
+                        <button class="btn btn-danger btn-remove" data-id="{{ offer.id }}">Usuń</button>
                     {% endif %}
                 </td>
             </tr>

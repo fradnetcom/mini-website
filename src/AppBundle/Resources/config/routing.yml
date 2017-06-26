@@ -27,6 +27,11 @@ offer_remove:
     options:
         expose: true
 
+offer_edit:
+    path: /offers/edit/{id}
+    defaults:
+        _controller: AppBundle:Offer:edit
+
 offer_list:
     path: /offers/
     defaults:

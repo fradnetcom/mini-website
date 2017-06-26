@@ -82,7 +82,7 @@ SQL;
 
                 $this->get('session')->getFlashBag()->add('success', 'Oferta została dodana!');
 
-                return $this->redirect($this->generateUrl('offer_create'));
+                return $this->redirect($this->generateUrl('offer_item', ['id' => $Offer->getId()]));
             } else {
                 $this->get('session')->getFlashBag()->add('error', 'Uzupełnij poprawnie wszystkie wymagane pola!');
             }
@@ -118,5 +118,40 @@ SQL;
         }
 
         return new SuccessResponse(['message' => 'Oferta zostałą usunięta!']);
+    }
+
+    /**
+     * @param $id
+     * @param Request $request
+     *
+     * @return RedirectResponse|Response
+     */
+    public function editAction($id, Request $request)
+    {
+        $offerRepository = $this->getDoctrine()->getRepository(Offer::class);
+        $offer = $offerRepository->findOneBy(['id' => $id]);
+
+        $form = $this->createForm(CreateOfferType::class, $offer);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted()) {
+            if ($form->isValid()) {
+                $offer->setCreateAuthor($this->getUser());
+
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($offer);
+                $em->flush();
+
+                $this->get('session')->getFlashBag()->add('success', 'Oferta została zaktualizowana!');
+
+                return $this->redirect($this->generateUrl('offer_item', ['id' => $id]));
+            } else {
+                $this->get('session')->getFlashBag()->add('error', 'Uzupełnij poprawnie wszystkie wymagane pola!');
+            }
+        }
+
+        return $this->render('full/Offer/edit.html.twig', [
+            'form' => $form->createView()
+        ]);
     }
 }
