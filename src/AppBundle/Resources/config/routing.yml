@@ -19,6 +19,14 @@ offer_create:
     defaults:
         _controller: AppBundle:Offer:create
 
+offer_remove:
+    path: /offers/remove
+    methods: post
+    defaults:
+        _controller: AppBundle:Offer:remove
+    options:
+        expose: true
+
 offer_list:
     path: /offers/
     defaults:

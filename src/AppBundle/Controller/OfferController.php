@@ -4,6 +4,8 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Offer;
 use AppBundle\Form\Offer\CreateOfferType;
+use AppBundle\Response\ErrorResponse;
+use AppBundle\Response\SuccessResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,6 +19,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 class OfferController extends Controller
 {
     const LIST_LIMIT = 5;
+
     /**
      * @param Request $request
      *
@@ -49,7 +52,7 @@ SQL;
         $offerRepository = $this->getDoctrine()->getRepository(Offer::class);
         $offer = $offerRepository->findOneBy(['id' => $id]);
 
-        if ($offer == null) {
+        if (!$offer instanceof Offer) {
             throw new NotFoundHttpException();
         }
 
@@ -88,5 +91,32 @@ SQL;
         return $this->render('full/Offer/create.html.twig', [
             'form' => $form->createView()
         ]);
+    }
+
+    /**
+     * @param Request $request
+     *
+     * @return ErrorResponse|SuccessResponse
+     */
+    public function removeAction(Request $request)
+    {
+        $id = $request->request->get('id');
+
+        $offerRepository = $this->getDoctrine()->getRepository(Offer::class);
+        $offer = $offerRepository->findOneBy(['id' => $id]);
+
+        if (!$offer instanceof offer) {
+            return new ErrorResponse(['message' => 'Oferta o takim ID nie istnieje!']);
+        }
+
+        try {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($offer);
+            $em->flush();
+        } catch (\Exception $e) {
+            return new ErrorResponse(['message' => 'Wystąpił błąd podczas usuwania spróbuj ponownie!']);
+        }
+
+        return new SuccessResponse(['message' => 'Oferta zostałą usunięta!']);
     }
 }
