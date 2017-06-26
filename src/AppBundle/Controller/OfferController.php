@@ -94,33 +94,6 @@ SQL;
     }
 
     /**
-     * @param Request $request
-     *
-     * @return ErrorResponse|SuccessResponse
-     */
-    public function removeAction(Request $request)
-    {
-        $id = $request->request->get('id');
-
-        $offerRepository = $this->getDoctrine()->getRepository(Offer::class);
-        $offer = $offerRepository->findOneBy(['id' => $id]);
-
-        if (!$offer instanceof offer) {
-            return new ErrorResponse(['message' => 'Oferta o takim ID nie istnieje!']);
-        }
-
-        try {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($offer);
-            $em->flush();
-        } catch (\Exception $e) {
-            return new ErrorResponse(['message' => 'Wystąpił błąd podczas usuwania spróbuj ponownie!']);
-        }
-
-        return new SuccessResponse(['message' => 'Oferta zostałą usunięta!']);
-    }
-
-    /**
      * @param $id
      * @param Request $request
      *
@@ -153,5 +126,63 @@ SQL;
         return $this->render('full/Offer/edit.html.twig', [
             'form' => $form->createView()
         ]);
+    }
+
+    /**
+     * @param $id
+     *
+     * @return RedirectResponse
+     */
+    public function removeAction($id)
+    {
+        $offerRepository = $this->getDoctrine()->getRepository(Offer::class);
+        $offer = $offerRepository->findOneBy(['id' => $id]);
+
+        if (!$offer instanceof offer) {
+            $this->get('session')->getFlashBag()->add('error', 'Oferta o takim ID nie istnieje!');
+
+            return $this->redirect($this->generateUrl('offer_list'));
+        }
+
+        try {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($offer);
+            $em->flush();
+        } catch (\Exception $e) {
+            $this->get('session')->getFlashBag()->add('error', 'Wystąpił błąd podczas usuwania spróbuj ponownie!');
+
+            return $this->redirect($this->generateUrl('offer_item', ['id' => $id]));
+        }
+
+        $this->get('session')->getFlashBag()->add('success', 'Oferta została skasowana!');
+
+        return $this->redirect($this->generateUrl('offer_list'));
+    }
+
+    /**
+     * @param Request $request
+     *
+     * @return ErrorResponse|SuccessResponse
+     */
+    public function removeApiAction(Request $request)
+    {
+        $id = $request->request->get('id');
+
+        $offerRepository = $this->getDoctrine()->getRepository(Offer::class);
+        $offer = $offerRepository->findOneBy(['id' => $id]);
+
+        if (!$offer instanceof offer) {
+            return new ErrorResponse(['message' => 'Oferta o takim ID nie istnieje!']);
+        }
+
+        try {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($offer);
+            $em->flush();
+        } catch (\Exception $e) {
+            return new ErrorResponse(['message' => 'Wystąpił błąd podczas usuwania spróbuj ponownie!']);
+        }
+
+        return new SuccessResponse(['message' => 'Oferta zostałą usunięta!']);
     }
 }

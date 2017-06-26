@@ -1,6 +1,9 @@
 {% extends 'base.html.twig' %}
 
 {% block pageContent %}
+
+    {% include 'partials/flashMsg.html.twig' %}
+
     <table class="table table-hover table-responsive table-striped offer-list">
         <tr>
             {# sorting of properties based on query components #}

@@ -20,10 +20,15 @@ offer_create:
         _controller: AppBundle:Offer:create
 
 offer_remove:
-    path: /offers/remove
-    methods: post
+    path: /offers/remove/{id}
     defaults:
         _controller: AppBundle:Offer:remove
+
+api_offer_remove:
+    path: /api/offers/remove
+    methods: post
+    defaults:
+        _controller: AppBundle:Offer:removeApi
     options:
         expose: true
 

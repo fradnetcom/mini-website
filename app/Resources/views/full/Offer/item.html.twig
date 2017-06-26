@@ -16,6 +16,16 @@
         <footer>
             <p>Autor: {{ content.createAuthor.username }}</p>
             <p>Data publikacji: {{ content.dateCreated|date('d.m.Y, H:i') }}</p>
+            {% if content.createAuthor == app.user %}
+                <div>
+                    <b>Zarządzaj:</b>
+                    <ul>
+                        <li>
+                            <a href="{{ path('offer_remove', {'id': content.id}) }}">Usuń ofertę</a>
+                        </li>
+                    </ul>
+                </div>
+            {% endif %}
         </footer>
     </article>
 {% endblock %}

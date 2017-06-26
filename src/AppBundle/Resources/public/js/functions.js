@@ -8,7 +8,7 @@ $('.offer-list .btn-remove').on('click', function (event) {
     $(document).find('.alert').remove();
 
     $.ajax({
-        url: Routing.generate('offer_remove'),
+        url: Routing.generate('api_offer_remove'),
         type: "post",
         data: {
             'id': $(this).attr('data-id')
